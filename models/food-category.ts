@@ -1,13 +1,16 @@
-import { Schema , model } from "mongoose"
+import { Schema, model, models } from "mongoose";
 
-const FOOD_CATEGORY_SCHEMA = new Schema({
-    categoryName : String
-} , 
-{
-    timestamps:true
-}
-)
+const FOOD_CATEGORY_SCHEMA = new Schema(
+  {
+    categoryName: String,
+  },
+  {
+    timestamps: true,
+  }
+);
 
-const  FoodCategoryModel = model ("FOOD" , FOOD_CATEGORY_SCHEMA , "food-category") 
+const FoodCategoryModel =
+  models["food-category"] ||
+  model("FOOD", FOOD_CATEGORY_SCHEMA, "food-category");
 
-export {FoodCategoryModel}
+export { FoodCategoryModel };

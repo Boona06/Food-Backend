@@ -21,13 +21,13 @@ FoodCategoryRouter.get('/' , async (req  : Request ,res : Response  ) => {
   })
   FoodCategoryRouter.delete('/:id' , async (req  : Request ,res : Response  ) => {
      const id = req.params.id 
-     const newFood =  await FoodCategoryModel.deleteOne(
+     const deleteFood =  await FoodCategoryModel.deleteOne(
      {
          _id : id
          
      }
      )
-      res.json(newFood)
+      res.json(deleteFood)
   })
   FoodCategoryRouter.put('/:id' , async (req  : Request ,res : Response  ) => {
      const id = req.params.id;
