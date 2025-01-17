@@ -22,25 +22,27 @@ foodRouter.post("/", async (req: Request, res: Response) => {
   res.status(200).json(food);
 });
 
-foodRouter.delete("/:id", (req: Request, res: Response) => {
+foodRouter.delete("/:id", async (req: Request, res: Response) => {
   const id = req.params.id;
-  const deletefood = FoodModel.deleteOne({
+  const deletefood = await FoodModel.deleteOne({
     _id: id,
   });
   res.send({ message: "Deleted" });
 });
-foodRouter.put("/:id", (req: Request, res: Response) => {
-  const { foodName, price, image, ingredients } = req.body;
-  const updatefood = FoodModel.findByIdAndUpdate(
-    {
-      _id: req.params.id,
-    },
+foodRouter.put("/:id", async (req: Request, res: Response) => {
+  const { foodName, price, image, ingredients, category } = req.body;
+
+  const id = req.params.id.toString();
+  const updatefood = await FoodModel.findByIdAndUpdate(
+    id,
     {
       foodName,
       price,
       image,
       ingredients,
-    }
+      category,
+    },
+    { new: true }
   );
   res.json(updatefood);
 });
