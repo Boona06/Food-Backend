@@ -8,6 +8,14 @@ FoodCategoryRouter.get("/", async (req: Request, res: Response) => {
   const Food = await FoodCategoryModel.find();
   res.json(Food);
 });
+FoodCategoryRouter.get("/:id", async (req: Request, res: Response) => {
+  const id = req.params.id;
+  const Food = await FoodCategoryModel.find({
+    _id: id,
+  });
+  res.json(Food);
+});
+
 FoodCategoryRouter.post("/", async (req: Request, res: Response) => {
   const name = req.body.categoryName;
   const newFood = await FoodCategoryModel.create({

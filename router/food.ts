@@ -9,6 +9,14 @@ foodRouter.get("/", async (req: Request, res: Response) => {
   res.json(food);
 });
 
+foodRouter.get("/:id", async (req: Request, res: Response) => {
+  const id = req.params.id;
+  const Food = await FoodModel.find({
+    _id: id,
+  });
+  res.json(Food);
+});
+
 foodRouter.post("/", async (req: Request, res: Response) => {
   const { foodName, price, image, ingredients, category } = req.body;
 
